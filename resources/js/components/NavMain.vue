@@ -12,6 +12,8 @@ import { Link, usePage } from '@inertiajs/vue3';
 
 defineProps<{
     items: NavItem[];
+    methods?: Map<string,string>;
+    payloads?: Map<string,any>;
 }>();
 
 const page = usePage();
@@ -19,7 +21,7 @@ const page = usePage();
 
 <template>
     <SidebarGroup class="px-2 py-0">
-        <SidebarGroupLabel>Platform</SidebarGroupLabel>
+        <SidebarGroupLabel>Tasks</SidebarGroupLabel>
         <SidebarMenu>
             <SidebarMenuItem v-for="item in items" :key="item.title">
                 <SidebarMenuButton
@@ -27,7 +29,12 @@ const page = usePage();
                     :is-active="urlIsActive(item.href, page.url)"
                     :tooltip="item.title"
                 >
-                    <Link :href="item.href">
+                    <Link method='post' :href="item.href" v-if="methods && payloads && methods.has(item.title)" :data=payloads.get(item.title) >
+                        <component :is="item.icon" />
+                        <span>{{ item.title }}</span>
+                    </Link>
+
+                    <Link v-else :href="item.href" >
                         <component :is="item.icon" />
                         <span>{{ item.title }}</span>
                     </Link>

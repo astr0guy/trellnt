@@ -3,7 +3,7 @@ import { SidebarInset } from '@/components/ui/sidebar';
 import { computed } from 'vue';
 
 interface Props {
-    variant?: 'header' | 'sidebar';
+    variant?: 'header' | 'sidebar' | 'workspace';
     class?: string;
 }
 
@@ -13,6 +13,9 @@ const className = computed(() => props.class);
 
 <template>
     <SidebarInset v-if="props.variant === 'sidebar'" :class="className">
+        <slot />
+    </SidebarInset>
+    <SidebarInset v-else-if="props.variant === 'workspace'" :class="className">
         <slot />
     </SidebarInset>
     <main

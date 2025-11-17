@@ -11,14 +11,21 @@ import {
     SidebarMenuButton,
     SidebarMenuItem,
 } from '@/components/ui/sidebar';
-import { workspace } from '@/routes';
+import { workspace, newTask } from '@/routes';
 import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/vue3';
-import { BookOpen, Folder, LayoutGrid } from 'lucide-vue-next';
+import { BadgePlusIcon, HomeIcon, LayoutGrid } from 'lucide-vue-next';
 import AppLogo from './AppLogo.vue';
+import { queryParams } from '@/wayfinder';
+
+const props = defineProps(['methods', 'payloads'])
 
 const mainNavItems: NavItem[] = [
-
+    {
+        title: 'New Task',
+        href: newTask().url,
+        icon: BadgePlusIcon,
+    },
 ];
 
 const footerNavItems: NavItem[] = [
@@ -27,16 +34,12 @@ const footerNavItems: NavItem[] = [
         href: workspace().url,
         icon: LayoutGrid,
     },
-    {
-        title: 'GitHub Repo',
-        href: 'https://github.com/astr0guy/trellnt',
-        icon: Folder,
-    },
 ];
+
 </script>
 
 <template>
-    <Sidebar collapsible="icon" variant="inset">
+    <Sidebar collapsible="icon" variant="inset" class="">
         <SidebarHeader>
             <SidebarMenu>
                 <SidebarMenuItem>
@@ -50,7 +53,7 @@ const footerNavItems: NavItem[] = [
         </SidebarHeader>
 
         <SidebarContent>
-            <NavMain :items="mainNavItems" />
+            <NavMain :items="mainNavItems" :methods="props.methods" :payloads="props.payloads" />
         </SidebarContent>
 
         <SidebarFooter>
