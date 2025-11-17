@@ -14,7 +14,6 @@ import { ReplaceAll } from 'lucide-vue-next';
 import { ref } from 'vue';
 import Label from '@/components/ui/label/Label.vue';
 import Button from '@/components/ui/button/Button.vue';
-import Heading from '@/components/Heading.vue';
 </script>
 
 <template>

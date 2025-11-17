@@ -12,7 +12,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 use JsonSerializable;
+use Ramsey\Uuid\Type\Integer;
 use Route;
+use function PHPUnit\Framework\isEmpty;
 
 class WorkspaceController extends Controller
 {
@@ -61,14 +63,13 @@ class WorkspaceController extends Controller
      */
     public function show(Request $request)
     {
-        $workspace = Workspace::where('id', '=', $request['workspace_id'], 'AND', 'user_id', '=', $request['user_id'])->get();
+        $input = $request->all();
+        $workspace = Workspace::where([['id', '=', $input['workspace_id']], ['user_id', '=', $input['user_id']],])->get();
         $categories = $workspace[0]->category;
         $tasks = $workspace[0]->task;
         $task_ids= $tasks->map(function(Task $task){return $task->id;});
-        $workspace_data = json_encode(array('workspace'=>$workspace, 'categories'=>$categories, 'tasks'=>$tasks));
-        $url = "/this-workspace";
-        return redirect($url)->with('workspace_data', $workspace_data);
-
+        $workspace_data = array('workspace'=> $workspace, 'categories'=>$categories, 'tasks'=>$task_ids);
+        return Inertia::render('Workspace', ['workspace_data' => $workspace_data]);
     }
 
     /**

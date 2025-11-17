@@ -10,13 +10,13 @@ class Task extends Model
 {
     protected $fillable = [
         'title',
+        'workspace_id',
         'description',
         'task_colour',
         'status',
         'status_colour',
         'deadline',
-        'category',
-        'workspace'
+        'category_id',
     ];
 
     public function category(): BelongsTo {

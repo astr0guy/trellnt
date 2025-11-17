@@ -3,9 +3,7 @@ import { workspace } from '@/routes';
 import AppLayout from '@/layouts/AppLayout.vue';
 import { type BreadcrumbItem } from '@/types';
 import { Form, Head, Link, usePage, usePoll } from '@inertiajs/vue3';
-import Heading from '@/components/Heading.vue';
 import FormDialog from '@/pages/dashboard/FormDialog.vue';
-
 import { AccordionContent, AccordionHeader, AccordionItem, AccordionRoot, AccordionTrigger } from 'reka-ui';
 import { computed, getCurrentInstance, Ref, VueElement } from 'vue';
 import { updateSourceFile } from 'typescript';
@@ -14,12 +12,22 @@ import { ReplaceAll } from 'lucide-vue-next';
 import { ref } from 'vue';
 import Label from '@/components/ui/label/Label.vue';
 import Button from '@/components/ui/button/Button.vue';
-import Heading from '@/components/Heading.vue';
 import Participants from './Participants.vue';
+
+const page = usePage()
+
+const workspace_id = page.props.workspace_data.workspace[0].id
+
+const user_id = page.props.auth.user.id
+
+const tasks = computed(() => page.props.workspace_data.workspace[0].task)
+
+console.log(tasks.value)
+
 </script>
 
-<template>
-    <AccordionRoot collapsible class="flow inset-x-0 top-0 pb-[100px]">
+<template v-if="tasks">
+    <AccordionRoot collapsible class="absolute inset-x-0 top-0 pb-[100px]">
         <template v-for="(t, key) in tasks" :key="tasks" >
             <AccordionItem class="relative bg-blue-650 rounded-xl shadow-[0_2px_10px] shadow-black/5 border"
             :value=String(key)>
@@ -29,17 +37,14 @@ import Participants from './Participants.vue';
                             </AccordionTrigger>
                     </AccordionHeader>
                         <AccordionContent :key="t" class="text-white flex-row h-[60px] relative aspect-auto w-full place-items-stretch bg-blue-950 data-[state=open]:animate-slideDown data-[state=closed]:animate-slideUp overflow-hidden text-sm">
-                            <div>
-                                <Heading title="Description" />
-                                <span>{{ t['description'] }}</span>
-                            </div>
-                            <div>
-                                <Heading title="Completion Date" />
-                                <span>{{ t['deadline'] }}</span>
-                            </div>
-                            <div>
-                                <Participants/>
-                            </div>
+                                <h1>Description</h1>
+                                <p>{{ t['description'] }}</p>
+
+                                <h1>Completion Date</h1>
+                                <p>{{ t['deadline'] }}</p>
+                            <!-- <div>
+                                <Participants/> -->
+                            <!-- </div> -->
                         </AccordionContent>
             </AccordionItem>
         </template>
