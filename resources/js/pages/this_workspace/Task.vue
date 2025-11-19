@@ -1,29 +1,12 @@
 <script setup lang="ts">
-import { workspace } from '@/routes';
-import AppLayout from '@/layouts/AppLayout.vue';
-import { type BreadcrumbItem } from '@/types';
-import { Form, Head, Link, usePage, usePoll } from '@inertiajs/vue3';
-import FormDialog from '@/pages/dashboard/FormDialog.vue';
+import { usePage } from '@inertiajs/vue3';
 import { AccordionContent, AccordionHeader, AccordionItem, AccordionRoot, AccordionTrigger } from 'reka-ui';
-import { computed, getCurrentInstance, Ref, VueElement } from 'vue';
-import { updateSourceFile } from 'typescript';
-import { reactify } from '@vueuse/core';
-import { ReplaceAll } from 'lucide-vue-next';
-import { ref } from 'vue';
-import Label from '@/components/ui/label/Label.vue';
-import Button from '@/components/ui/button/Button.vue';
-import Participants from './Participants.vue';
+import { computed } from 'vue';
+// import Participants from './Participants.vue';
 
 const page = usePage()
 
-const workspace_id = page.props.workspace_data.workspace[0].id
-
-const user_id = page.props.auth.user.id
-
-const tasks = computed(() => page.props.workspace_data.workspace[0].task)
-
-console.log(tasks.value)
-
+const tasks = computed(() => page.props.workspace_data[0].task)
 </script>
 
 <template v-if="tasks">

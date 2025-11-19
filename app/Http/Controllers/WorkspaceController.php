@@ -6,15 +6,8 @@ namespace App\Http\Controllers;
 use App\Models\ParticipantBadge;
 use App\Models\Task;
 use App\Models\Workspace;
-use App\Models\Category;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
-use JsonSerializable;
-use Ramsey\Uuid\Type\Integer;
-use Route;
-use function PHPUnit\Framework\isEmpty;
 
 class WorkspaceController extends Controller
 {
@@ -65,11 +58,8 @@ class WorkspaceController extends Controller
     {
         $input = $request->all();
         $workspace = Workspace::where([['id', '=', $input['workspace_id']], ['user_id', '=', $input['user_id']],])->get();
-        $categories = $workspace[0]->category;
         $tasks = $workspace[0]->task;
-        $task_ids= $tasks->map(function(Task $task){return $task->id;});
-        $workspace_data = array('workspace'=> $workspace, 'categories'=>$categories, 'tasks'=>$task_ids);
-        return Inertia::render('Workspace', ['workspace_data' => $workspace_data]);
+        return Inertia::render('Workspace', ['workspace_data' => $workspace]);
     }
 
     /**

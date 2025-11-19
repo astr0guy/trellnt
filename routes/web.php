@@ -27,10 +27,6 @@ Route::post('/new-task', [TaskController::class, 'create'])->name('new-task');
 
 
 
-// Route::post('/login', Login::class)
-//     ->middleware('guest');
-
-
 require __DIR__.'/settings.php';
 
 

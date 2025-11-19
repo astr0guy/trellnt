@@ -1,40 +1,17 @@
 <script setup lang="ts">
-import { newTask, this_workspace } from '@/routes';
+import { this_workspace } from '@/routes';
 import AppLayout from '@/layouts/AppLayout.vue';
-import { NavItem, type BreadcrumbItem } from '@/types';
-import { Form, Head, Link, usePage, usePoll } from '@inertiajs/vue3';
-import Heading from '@/components/Heading.vue';
-import FormDialog from '@/pages/dashboard/FormDialog.vue';
-
-import { AccordionContent, AccordionHeader, AccordionItem, AccordionRoot, AccordionTrigger } from 'reka-ui';
-import { computed, getCurrentInstance, Ref, VueElement } from 'vue';
-import { updateSourceFile } from 'typescript';
-import { reactify } from '@vueuse/core';
-import { BadgePlusIcon, ReplaceAll } from 'lucide-vue-next';
-import { ref } from 'vue';
-import Label from '@/components/ui/label/Label.vue';
-import Button from '@/components/ui/button/Button.vue';
-import { categories } from '@vueuse/core/metadata.cjs';
+import { type BreadcrumbItem } from '@/types';
+import { Head, usePage } from '@inertiajs/vue3';
 import Task from './this_workspace/Task.vue';
-import SidebarContent from '@/components/ui/sidebar/SidebarContent.vue';
-import AppSidebar from '@/components/AppSidebar.vue';
-import NavMain from '@/components/NavMain.vue';
-import Sidebar from '@/components/ui/sidebar/Sidebar.vue';
 import WorkspaceSidebar from '@/components/WorkspaceSidebar.vue';
-
-const { proxy } = getCurrentInstance();
-
-
+import { JsonObjectExpression } from 'typescript';
 
 const page = usePage()
 
-const workspace_name = page.props.workspace_data.workspace[0].title
-
-const workspace_id = page.props.workspace_data.workspace[0].id
-
+const workspace_name = page.props.workspace_data[0].title
+const workspace_id = page.props.workspace_data[0].id
 const user_id = page.props.auth.user.id;
-
-const tasks = page.props.workspace_data.tasks;
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -43,16 +20,11 @@ const breadcrumbs: BreadcrumbItem[] = [
     },
 ]
 
-
 const navItemActions = new Map<string, string>;
-const navItemPayloads = new Map<string, any>;
+const navItemPayloads = new Map<string, Object>;
 
 navItemActions.set('New Task','post')
 navItemPayloads.set('New Task', {"user_id": user_id, "workspace_id": workspace_id})
-
-
-
-
 </script>
 
 <template v-if="workspace_name != null">
