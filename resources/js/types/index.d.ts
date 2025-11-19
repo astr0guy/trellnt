@@ -21,10 +21,11 @@ export type AppPageProps<
     T extends Record<string, unknown> = Record<string, unknown>,
 > = T & {
     name: string;
-    quote: { message: string; author: string };
     auth: Auth;
     workspace: Workspace
+    owned_workspaces: Array<Workspace>;
     sidebarOpen: boolean;
+    workspace_data: Array<Workspace>;
 };
 
 export interface User {
@@ -38,7 +39,9 @@ export interface User {
 }
 
 export interface Workspace {
-    workspaces: Array;
+    title: string;
+    id: number;
+    task: Array<Task>
     }
 
 export type BreadcrumbItemType = BreadcrumbItem;

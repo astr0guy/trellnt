@@ -1,20 +1,15 @@
-
 <script setup lang="ts">
-
-import DialogClose from '@/components/ui/dialog/DialogClose.vue';
 import DialogContent from '@/components/ui/dialog/DialogContent.vue';
 import DialogOverlay from '@/components/ui/dialog/DialogOverlay.vue';
 import DialogTrigger from '@/components/ui/dialog/DialogTrigger.vue';
-import { DialogPortal, DialogRoot } from 'reka-ui';
+import { DialogRoot } from 'reka-ui';
 import { ref } from 'vue';
 
 const open = ref(false)
 
 function triggerDialog(){
-
     open.value = !open.value
 }
-
 </script>
 
 

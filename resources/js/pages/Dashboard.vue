@@ -2,22 +2,14 @@
 import { workspace } from '@/routes';
 import AppLayout from '@/layouts/AppLayout.vue';
 import { type BreadcrumbItem } from '@/types';
-import { Form, Head, Link, usePage, usePoll } from '@inertiajs/vue3';
+import { Form, Head, Link, usePage } from '@inertiajs/vue3';
 import Heading from '@/components/Heading.vue';
 import FormDialog from '@/pages/dashboard/FormDialog.vue';
-
 import { AccordionContent, AccordionHeader, AccordionItem, AccordionRoot, AccordionTrigger } from 'reka-ui';
-import { computed, getCurrentInstance, Ref, VueElement } from 'vue';
-import { updateSourceFile } from 'typescript';
-import { reactify } from '@vueuse/core';
-import { List, ReplaceAll } from 'lucide-vue-next';
+import { computed } from 'vue';
 import { ref } from 'vue';
 import Label from '@/components/ui/label/Label.vue';
 import Button from '@/components/ui/button/Button.vue';
-
-
-
-const { proxy } = getCurrentInstance();
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -30,12 +22,8 @@ const breadcrumbs: BreadcrumbItem[] = [
 const rendered = ref(true)
 
 const user_id = usePage().props.auth.user.id;
-
 const owned_workspaces = computed(() => usePage().props.owned_workspaces);
-
-const unowned_workspaces = computed(() => usePage().props.unowned_workspaces);
-
-
+// const unowned_workspaces = computed(() => usePage().props.unowned_workspaces);
 </script>
 <template>
     <template v-if="rendered">

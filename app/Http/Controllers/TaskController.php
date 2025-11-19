@@ -7,9 +7,6 @@ use App\Models\Task;
 use App\Models\Workspace;
 use App\Models\WorkspacePermit;
 use Illuminate\Http\Request;
-use Inertia\Inertia;
-use Inertia\Response;
-use function PHPUnit\Framework\throwException;
 
 class TaskController extends Controller
 {
@@ -19,7 +16,6 @@ class TaskController extends Controller
     public function index(Request $request)
     {
         $input = $request->all();
-        // echo json_encode($input);
         if (Workspace::where([['id', '=', $input['workspace_id']], ['user_id', '=', $input['user_id']],])->exists()){
             $tasks = Task::with('workspace')->get();
         } elseif (WorkspacePermit::where([['user_id', $input['user_id']],['workspace_id', $input['workspace_id']]])->exists()){

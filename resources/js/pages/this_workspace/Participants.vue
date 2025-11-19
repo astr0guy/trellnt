@@ -1,19 +1,5 @@
-<script setup lang="ts">
-import { workspace } from '@/routes';
-import AppLayout from '@/layouts/AppLayout.vue';
-import { type BreadcrumbItem } from '@/types';
-import { Form, Head, Link, usePage, usePoll } from '@inertiajs/vue3';
-import Heading from '@/components/Heading.vue';
-import FormDialog from '@/pages/dashboard/FormDialog.vue';
-
+<!-- <script setup lang="ts">
 import { AccordionContent, AccordionHeader, AccordionItem, AccordionRoot, AccordionTrigger } from 'reka-ui';
-import { computed, getCurrentInstance, Ref, VueElement } from 'vue';
-import { updateSourceFile } from 'typescript';
-import { reactify } from '@vueuse/core';
-import { ReplaceAll } from 'lucide-vue-next';
-import { ref } from 'vue';
-import Label from '@/components/ui/label/Label.vue';
-import Button from '@/components/ui/button/Button.vue';
 </script>
 
 <template>
@@ -32,4 +18,4 @@ import Button from '@/components/ui/button/Button.vue';
             </AccordionItem>
         </template>
     </AccordionRoot>
-</template>
+</template> -->

@@ -14,9 +14,8 @@ import {
 import { workspace, newTask } from '@/routes';
 import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/vue3';
-import { BadgePlusIcon, HomeIcon, LayoutGrid } from 'lucide-vue-next';
+import { BadgePlusIcon, HomeIcon } from 'lucide-vue-next';
 import AppLogo from './AppLogo.vue';
-import { queryParams } from '@/wayfinder';
 
 const props = defineProps(['methods', 'payloads'])
 
@@ -32,7 +31,7 @@ const footerNavItems: NavItem[] = [
     {
         title: 'Workspace',
         href: workspace().url,
-        icon: LayoutGrid,
+        icon: HomeIcon,
     },
 ];
 
