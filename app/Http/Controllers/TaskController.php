@@ -19,7 +19,7 @@ class TaskController extends Controller
         if (Workspace::where([['id', '=', $input['workspace_id']], ['user_id', '=', $input['user_id']],])->exists()){
             $tasks = Task::with('workspace')->get();
         } elseif (WorkspacePermit::where([['user_id', $input['user_id']],['workspace_id', $input['workspace_id']]])->exists()){
-            $tasks = Task::with(ParticipantBadge::with('user'))->get();
+            $tasks = Task::with(ParticipantBadge::with('user')->get())->get();
         } else {
             return Response('Access Denied', 403, ['Access Denied', 'You are not registered to this workspace.']);
         }

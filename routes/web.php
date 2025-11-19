@@ -13,17 +13,17 @@ Route::get('/', function () {
     ]);
 })->name('home');
 
-Route::get('/tasks', [TaskController::class, 'index'])->name('tasks');
+Route::get('/tasks', [TaskController::class, 'index'])->middleware("auth")->name('tasks');
 
-Route::get('/this-workspace', [WorkspaceController::class, 'show'])->name('this_workspace');
+Route::get('/this-workspace', [WorkspaceController::class, 'show'])->middleware("auth")->name('this_workspace');
 
-Route::post('/workspace', [WorkspaceController::class, 'store']);
+Route::post('/workspace', [WorkspaceController::class, 'store'])->middleware("auth");
 
-Route::delete('/workspace', [WorkspaceController::class, 'destroy']);
+Route::delete('/workspace', [WorkspaceController::class, 'destroy'])->middleware("auth");
 
-Route::get('/workspace', [WorkspaceController::class, 'index'])->name('workspace');
+Route::get('/workspace', [WorkspaceController::class, 'index'])->middleware("auth")->name('workspace');
 
-Route::post('/new-task', [TaskController::class, 'create'])->name('new-task');
+Route::post('/new-task', [TaskController::class, 'create'])->middleware("auth")->name('new-task');
 
 
 

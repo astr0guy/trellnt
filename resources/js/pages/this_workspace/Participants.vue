@@ -1,9 +1,9 @@
 <!-- <script setup lang="ts">
 import { AccordionContent, AccordionHeader, AccordionItem, AccordionRoot, AccordionTrigger } from 'reka-ui';
-</script>
+</script> -->
 
 <template>
-    <AccordionRoot collapsible class="flow inset-x-0 top-0 pb-[100px]">
+    <!-- <AccordionRoot collapsible class="flow inset-x-0 top-0 pb-[100px]">
         <template v-for="(p, key) in participants" :key="participants" >
             <AccordionItem class="relative bg-blue-650 rounded-xl shadow-[0_2px_10px] shadow-black/5 border"
             :value=String(key)>
@@ -17,5 +17,5 @@ import { AccordionContent, AccordionHeader, AccordionItem, AccordionRoot, Accord
                         </AccordionContent>
             </AccordionItem>
         </template>
-    </AccordionRoot>
-</template> -->
+    </AccordionRoot> -->
+</template>
