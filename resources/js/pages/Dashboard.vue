@@ -39,7 +39,7 @@ const owned_workspaces = computed(() => usePage().props.owned_workspaces);
                         <div class="flow w-full rounded-xl border border-sidebar-border/70 dark:border-sidebar-border my-auto min-h-[150px]" >
                             <Heading class="absolute justify-self-center text-lg top-3 line-clamp-1" title="No workspaces yet! Create one to get started." />
                             <AccordionRoot collapsible class="flow inset-x-0 top-0 pb-[100px]">
-                                <template v-for="(w, key) in owned_workspaces" :key="owned_workspaces" >
+                                <template v-for="(w, key) in owned_workspaces" :key="key" >
                                     <AccordionItem class="relative bg-blue-650 rounded-xl shadow-[0_2px_10px] shadow-black/5 border"
                                     :value=String(key)>
                                             <AccordionHeader class="flex">

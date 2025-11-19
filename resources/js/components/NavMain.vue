@@ -12,7 +12,7 @@ import { Link, usePage } from '@inertiajs/vue3';
 
 defineProps<{
     items: NavItem[];
-    methods?: Map<string,string>;
+    methods?: Map<string, 'get' | 'post' | 'put' | 'patch' | 'delete'>;
     payloads?: Map<string,any>;
 }>();
 
@@ -29,7 +29,7 @@ const page = usePage();
                     :is-active="urlIsActive(item.href, page.url)"
                     :tooltip="item.title"
                 >
-                    <Link method='post' :href="item.href" v-if="methods && payloads && methods.has(item.title)" :data=payloads.get(item.title) >
+                    <Link :method="methods.get(item.title)" :href="item.href" v-if="methods && payloads && methods.has(item.title)" :data=payloads.get(item.title) >
                         <component :is="item.icon" />
                         <span>{{ item.title }}</span>
                     </Link>

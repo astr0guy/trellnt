@@ -11,7 +11,7 @@ const tasks = computed(() => page.props.workspace_data[0].task)
 
 <template v-if="tasks">
     <AccordionRoot collapsible class="absolute inset-x-0 top-0 pb-[100px]">
-        <template v-for="(t, key) in tasks" :key="tasks" >
+        <template v-for="(t, key) in tasks" :key="key" >
             <AccordionItem class="relative bg-blue-650 rounded-xl shadow-[0_2px_10px] shadow-black/5 border"
             :value=String(key)>
                     <AccordionHeader class="flex">
